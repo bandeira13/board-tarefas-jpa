@@ -1,6 +1,6 @@
 package br.com.dio.board_tarefas_jpa.repository;
 
-import br.com.dio.model.Board;
+import br.com.dio.board_tarefas_jpa.model.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
