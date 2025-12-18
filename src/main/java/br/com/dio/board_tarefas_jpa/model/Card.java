@@ -1,11 +1,13 @@
 package br.com.dio.board_tarefas_jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "cards")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Card {
 
     @Id
