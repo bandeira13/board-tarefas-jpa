@@ -30,4 +30,14 @@ public class CardService {
     public void delete(Long id) {
         cardRepository.deleteById(id);
     }
+    public Card move(Long cardId, Long newColumnId) {
+        Card card = cardRepository.findById(cardId)
+                .orElseThrow(() -> new RuntimeException("Card não encontrado"));
+
+        BoardColumn newColumn = columnRepository.findById(newColumnId)
+                .orElseThrow(() -> new RuntimeException("Coluna não encontrada"));
+
+        card.setColumn(newColumn);
+        return cardRepository.save(card);
+    }
 }

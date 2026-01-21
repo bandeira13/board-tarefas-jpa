@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // <--- ESSA ANOTAÇÃO É OBRIGATÓRIA
-@RequestMapping("/boards") // <--- ESSA TAMBÉM
+import java.util.List;
+
+@RestController
+@RequestMapping("/boards")
 @RequiredArgsConstructor
 public class BoardController {
 
@@ -38,5 +40,10 @@ public class BoardController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Board>> findAll() {
+        return ResponseEntity.ok(service.findAll());
     }
 }

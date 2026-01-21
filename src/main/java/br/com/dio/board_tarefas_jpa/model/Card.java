@@ -1,12 +1,17 @@
 package br.com.dio.board_tarefas_jpa.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "cards")
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Card {
 
@@ -18,8 +23,10 @@ public class Card {
 
     private String description;
 
-    @ManyToOne // Várias tarefas pertencem a uma Coluna
-    @JoinColumn(name = "column_id") // Cria a chave estrangeira no banco
+    @ManyToOne
+    @JoinColumn(name = "column_id")
+    @ToString.Exclude
+    @JsonIgnore
     private BoardColumn column;
 
 }

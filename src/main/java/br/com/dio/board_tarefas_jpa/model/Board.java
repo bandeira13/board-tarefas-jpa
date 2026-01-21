@@ -4,7 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,4 +23,9 @@ public class Board {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<BoardColumn> columns = new ArrayList<>();
+
 }

@@ -1,9 +1,11 @@
 package br.com.dio.board_tarefas_jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +27,8 @@ public class BoardColumn {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
+    @JsonIgnore
+    @ToString.Exclude
     private Board board;
 
     public BoardColumn(String name, int order, String kind, Board board) {

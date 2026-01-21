@@ -26,4 +26,10 @@ public class CardController {
         cardService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}/move")
+    public ResponseEntity<Card> move(@PathVariable Long id, @RequestBody Long newColumnId){
+        Card card = cardService.move(id, newColumnId);
+        return ResponseEntity.ok(card);
+    }
 }
