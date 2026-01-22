@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -30,6 +33,9 @@ public class BoardColumn {
     @JsonIgnore
     @ToString.Exclude
     private Board board;
+
+    @OneToMany(mappedBy = "column", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Card> cards = new ArrayList<>();
 
     public BoardColumn(String name, int order, String kind, Board board) {
         this.name = name;
