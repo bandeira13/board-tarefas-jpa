@@ -35,15 +35,21 @@ public class BoardController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        boolean deleted = service.delete(id);
-        if(deleted){
+
+        if(service.delete(id)){
             return ResponseEntity.noContent().build();
         }
+
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping
     public ResponseEntity<List<Board>> findAll() {
         return ResponseEntity.ok(service.findAll());
+    }
+    @PutMapping("/{id}/complete")
+    public ResponseEntity<Void> complete(@PathVariable Long id) {
+        service.markAsCompleted(id);
+        return ResponseEntity.ok().build();
     }
 }

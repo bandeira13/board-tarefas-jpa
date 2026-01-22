@@ -36,7 +36,16 @@ public class BoardService {
             return new BoardColumnDTO(column.getId(), column.getName(), column.getKind(), cardsDTO);
         }).toList();
 
-        return new BoardDTO(entity.getId(), entity.getName(), columnsDTO);
+        return new BoardDTO(entity.getId(), entity.getName(), entity.isCompleted(), columnsDTO);
+
+    }
+
+    public void markAsCompleted(Long id) {
+        var board = boardRepository.findById(id).orElse(null);
+        if (board != null) {
+            board.setCompleted(true);
+            boardRepository.save(board);
+        }
     }
 
     public Board save(Board entity) {

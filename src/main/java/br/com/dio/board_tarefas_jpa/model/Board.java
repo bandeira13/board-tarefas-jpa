@@ -24,6 +24,8 @@ public class Board {
 
     private String name;
 
+    private boolean completed;
+
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<BoardColumn> columns = new ArrayList<>();
